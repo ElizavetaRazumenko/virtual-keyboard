@@ -92,6 +92,8 @@ document.addEventListener('keydown', function(event) {
   });
 
 
+  
+
   KEYBOARD.addEventListener('click', (event) => {
     if (event.target instanceof HTMLElement) {
         let elem = event.target.closest('.body__key');
@@ -101,7 +103,8 @@ document.addEventListener('keydown', function(event) {
         }); 
 
         elem.classList.add('active');
-
+        
+        TEXT_AREA.focus();
         if (elem.textContent === 'Backspace') {
 
             if (TEXT_AREA.value.length >= 1) {

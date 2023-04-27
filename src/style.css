@@ -11,7 +11,9 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(230, 213, 213);
+    background-image: url(assets/ocean.jpg);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
 }
 
 .body-wrapper {
@@ -35,7 +37,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ccc;
-    box-shadow: 5px 5px 5px #999;
+    background-color: rgba(200, 206, 206, 0.8);
     line-height: 1.5;
     font-size: 1.5rem;
 }
@@ -44,10 +46,9 @@ body {
     margin-top: 20px;
     padding: 10px;
     min-width: 100%;
-    background-color: rgb(200, 206, 206);
+    background-color: rgba(200, 206, 206, 0.6);
     border-radius: 10px;
     border: 1px solid rgb(167, 164, 164);
-    box-shadow: 5px 5px 5px #999;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
