@@ -99,10 +99,58 @@ document.addEventListener('keydown', function(event) {
         document.querySelectorAll('.body__key').forEach(function(element) {
             element.classList.remove('active');
         }); 
-        
+
         elem.classList.add('active');
+
+        if (elem.textContent === 'Backspace') {
+
+            if (TEXT_AREA.value.length >= 1) {
+                TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.selectionStart - 1) + TEXT_AREA.value.slice(TEXT_AREA.selectionStart);
+            } 
+
+        }
+         else if (elem.textContent === 'Tab') {
+               TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.selectionStart) + '  ' + TEXT_AREA.value.slice(TEXT_AREA.selectionStart);
+        } 
+        else if (elem.textContent === 'Del') {
+
+           if (TEXT_AREA.selectionStart < TEXT_AREA.value.length) {
+            TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.selectionStart) + TEXT_AREA.value.slice(TEXT_AREA.selectionStart + 1);
+           }
+
+        } 
+         else if (elem.textContent === 'Enter') {
+            TEXT_AREA.value += `\n`;
+        }
+         else if (elem.textContent === 'CapsLock') {
+
+            let arrayOfSystemBtn = ['Backspace', 'Tab', 'Del',  'CapsLock', 'Shift', 'Enter', 'Ctrl', 'Win', 'Alt', '←', '↓', '→', '↑'] 
+            
+            document.querySelectorAll('.body__key').forEach((elem) => {
+                if (elem.textContent) {
+                    if (elem.textContent?.toLowerCase() === elem.textContent && !arrayOfSystemBtn.includes(elem.textContent)) {
+                        elem.textContent = elem.textContent.toUpperCase();
+                    } else {
+
+                        if (!arrayOfSystemBtn.includes(elem.textContent)) {
+                            elem.textContent = elem.textContent.toLowerCase();
+                        }
+                    }
+                }
+                
+            })
+            
+            
+        }
+
+        else {
+            TEXT_AREA.value +=  elem.textContent;
+        }
+        console.log(TEXT_AREA.selectionStart)
     }
-  })
+  });
+
+
 
 
 
