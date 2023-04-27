@@ -42,10 +42,11 @@ body {
 
 .body__keyboard {
     margin-top: 20px;
+    padding: 10px;
     min-width: 100%;
-    background-color: rgb(185, 191, 191);
+    background-color: rgb(200, 206, 206);
     border-radius: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(167, 164, 164);
     box-shadow: 5px 5px 5px #999;
     display: flex;
     flex-wrap: wrap;
@@ -65,12 +66,27 @@ body {
     background-color: rgb(242, 234, 234);
     border: none;
     border-radius: 5px;
-    box-shadow: 5px 5px 5px #999;
-    transition: .5s;
+    box-shadow: 2px 2px 2px #999;
+    transition: .3s;
+}
+
+.body__key_enter {
+    min-width: 75px;
+}
+
+.body__key_shift {
+    min-width: 105px;
+}
+
+.body__key_space {
+    min-width: 340px;
 }
 
 .body__key:hover {
     background-color: rgb(211, 204, 204);
 }
 
+.active {
+    background-color: rgb(211, 204, 204);
+}
 
