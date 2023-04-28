@@ -70,10 +70,21 @@ function initRu() {
 }
 
 
-document.body.onload = () => initEn();
+
 
 let counter = 0;
-//console.log(navigator.language || navigator.userLanguage);
+
+document.body.onload = () => {
+        let counterSaver = JSON.parse(localStorage.getItem("counter") || "");
+        if (!counterSaver || counterSaver % 2 === 0) {
+            initEn();
+        } else {
+            initRu(); 
+        }
+
+        TEXT_AREA.value = JSON.parse(localStorage.getItem("textarea") || "");
+};
+
 
 document.addEventListener('keydown', function(event) {
     if (event.shiftKey && event.altKey ) {
@@ -83,13 +94,21 @@ document.addEventListener('keydown', function(event) {
         } else {
             initEn();
         }
+
+        localStorage.setItem("counter", JSON.stringify(counter));
     }
+       
     document.querySelectorAll('.body__key').forEach(function(element) {
-        element.classList.remove('active');
+            element.classList.remove('active');
     }); 
-    console.log(event.code)
+
     document.querySelector('.body__key[data="'+ event.code + '"]')?.classList.add('active');
+
+
   });
+
+  
+
 
 
   
@@ -104,7 +123,7 @@ document.addEventListener('keydown', function(event) {
 
         elem.classList.add('active');
         
-        TEXT_AREA.focus();
+        
         if (elem.textContent === 'Backspace') {
 
             if (TEXT_AREA.value.length >= 1) {
@@ -113,12 +132,15 @@ document.addEventListener('keydown', function(event) {
 
         }
          else if (elem.textContent === 'Tab') {
-               TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.selectionStart) + '  ' + TEXT_AREA.value.slice(TEXT_AREA.selectionStart);
+               TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.selectionStart) + '    ' + TEXT_AREA.value.slice(TEXT_AREA.selectionStart);
         } 
         else if (elem.textContent === 'Del') {
 
+            let cursor = TEXT_AREA.selectionStart;
+
            if (TEXT_AREA.selectionStart < TEXT_AREA.value.length) {
             TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.selectionStart) + TEXT_AREA.value.slice(TEXT_AREA.selectionStart + 1);
+            TEXT_AREA.selectionStart = cursor;
            }
 
         } 
@@ -144,13 +166,16 @@ document.addEventListener('keydown', function(event) {
             })
             
             
-        }
-
-        else {
+        } else if (elem.textContent === 'Shift' || elem.textContent === 'Ctrl' || elem.textContent === 'Win' || elem.textContent === 'Alt') {
+            TEXT_AREA.value = TEXT_AREA.value;
+        } 
+          else {
             TEXT_AREA.value +=  elem.textContent;
         }
-        console.log(TEXT_AREA.selectionStart)
+        
     }
+
+    localStorage.setItem("textarea", JSON.stringify(TEXT_AREA.value));
   });
 
 
