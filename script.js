@@ -80,7 +80,11 @@ function initRu() {
 let counter = 0;
 
 document.body.onload = () => {
-        let counterSaver = JSON.parse(localStorage.getItem("counter") || "");
+    let counterSaver;
+    if (localStorage.getItem("counter")) {
+        counterSaver = JSON.parse(localStorage.getItem("counter") || "");
+
+    }
         if (!counterSaver || counterSaver % 2 === 0) {
             initEn();
         } else {
