@@ -199,7 +199,7 @@ document.addEventListener('keydown', function(event) {
                         }
                         
 
-                        elem.textContent = elem.textContent.toUpperCase();
+                        elem.textContent = elem.textContent?.toUpperCase() || '';
                     }
                 }
                 
@@ -222,7 +222,6 @@ document.addEventListener('keydown', function(event) {
             if (elem.textContent === 'Shift') {
                 document.querySelectorAll('.body__key').forEach((elem) => {
                     if (elem.textContent) {
-                       
                             if (!arrayOfSystemBtn.includes(elem.textContent)) {
                                 elem.textContent = elem.textContent.toLowerCase();
                             }
@@ -245,6 +244,5 @@ document.addEventListener('keydown', function(event) {
 
    
 
-  
 
     
