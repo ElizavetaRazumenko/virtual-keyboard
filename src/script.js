@@ -33,6 +33,11 @@ KeyS: 's', KeyD: 'd', KeyF: 'f', KeyG: 'g', KeyH: 'h', KeyJ: 'j', KeyK: 'k', Key
 ShiftLeft: 'Shift', KeyZ: 'z', KeyX: 'x', KeyC: 'c', KeyV: 'v', KeyB: 'b', KeyN: 'n', KeyM: 'm', Comma: ',', Period: '.', Slash: '/', ArrowUp: '↑', ShiftRight: 'Shift',
 ControlLeft: 'Ctrl', MetaLeft: 'Win', AltLeft: 'Alt', Space: ' ', AltRight: 'Alt', ArrowLeft: '←', ArrowDown: '↓', ArrowRight: '→', ControlRight: 'Ctrl'}
 
+const SHIFT_ELEM = {Backquote: '~', Digit1: '!', Digit2: '@', Digit3: '#', Digit4: '$', Digit5: '%', Digit6: '^', Digit7: '&', Digit8: '*',
+Digit9: '(', Digit0: ')', Minus: '_', Equal: '+', BracketLeft: '{', BracketRight: '}', Backslash: '|', Semicolon: ':', Quote: '"', Comma: '<', Period: '>', Slash: '?'}
+
+let arrayOfSystemBtn = ['Backspace', 'Tab', 'Del',  'CapsLock', 'Shift', 'Enter', 'Ctrl', 'Win', 'Alt', '←', '↓', '→', '↑']; 
+
 function initEn() {
     let out = "";
     for (let key of Object.keys(BUTTON_EN)) {
@@ -97,10 +102,7 @@ document.addEventListener('keydown', function(event) {
 
         localStorage.setItem("counter", JSON.stringify(counter));
     }
-       
-    document.querySelectorAll('.body__key').forEach(function(element) {
-            element.classList.remove('active');
-    }); 
+           
 
     document.querySelector('.body__key[data="'+ event.code + '"]')?.classList.add('active');
 
@@ -108,7 +110,11 @@ document.addEventListener('keydown', function(event) {
   });
 
   
-
+  document.addEventListener('keyup', function() {
+    document.querySelectorAll('.body__key').forEach(function(element) {
+        element.classList.remove('active');
+}); 
+  })
 
 
   
@@ -117,11 +123,7 @@ document.addEventListener('keydown', function(event) {
     if (event.target instanceof HTMLElement) {
         let elem = event.target.closest('.body__key');
         if (!elem) return;
-        document.querySelectorAll('.body__key').forEach(function(element) {
-            element.classList.remove('active');
-        }); 
-
-        elem.classList.add('active');
+        
         
         
         if (elem.textContent === 'Backspace') {
@@ -145,11 +147,11 @@ document.addEventListener('keydown', function(event) {
 
         } 
          else if (elem.textContent === 'Enter') {
-            TEXT_AREA.value += `\n`;
+            TEXT_AREA.value = TEXT_AREA.value.slice(0, TEXT_AREA.selectionStart) + `\n` + TEXT_AREA.value.slice(TEXT_AREA.selectionStart); 
         }
          else if (elem.textContent === 'CapsLock') {
 
-            let arrayOfSystemBtn = ['Backspace', 'Tab', 'Del',  'CapsLock', 'Shift', 'Enter', 'Ctrl', 'Win', 'Alt', '←', '↓', '→', '↑'] 
+            
             
             document.querySelectorAll('.body__key').forEach((elem) => {
                 if (elem.textContent) {
@@ -180,5 +182,69 @@ document.addEventListener('keydown', function(event) {
 
 
 
+  KEYBOARD.addEventListener('mousedown', (event) => {
+    if (event.target instanceof HTMLElement) {
+        let elem = event.target.closest('.body__key');
+        if (!elem) return;
+        
+        elem.classList.add('active');
+
+        if (elem.textContent === 'Shift') {
+            document.querySelectorAll('.body__key').forEach((elem) => {
+                if (elem.textContent) {
+                    if (!arrayOfSystemBtn.includes(elem.textContent)) {
+                        let atrubut = elem.getAttribute('data') || '';
+                        if (SHIFT_ELEM[atrubut]) {
+                            elem.textContent = SHIFT_ELEM[atrubut];
+                        }
+                        
+
+                        elem.textContent = elem.textContent.toUpperCase();
+                    }
+                }
+                
+            })
+
+        }
+
+    }})
+
+    KEYBOARD.addEventListener('mouseup', (event) => {
+        if (event.target instanceof HTMLElement) {
+            let elem = event.target.closest('.body__key');
+            if (!elem) return;
+            
+            document.querySelectorAll('.body__key').forEach(function(element) {
+                element.classList.remove('active');
+            }); 
 
 
+            if (elem.textContent === 'Shift') {
+                document.querySelectorAll('.body__key').forEach((elem) => {
+                    if (elem.textContent) {
+                       
+                            if (!arrayOfSystemBtn.includes(elem.textContent)) {
+                                elem.textContent = elem.textContent.toLowerCase();
+                            }
+
+                            let atrubut = elem.getAttribute('data') || '';
+                        if (SHIFT_ELEM[atrubut]) {
+                            elem.textContent = BUTTON_EN[atrubut];
+                        }
+                        
+                        
+                    }
+                    
+                })
+    
+            }
+        
+    
+        }})
+
+
+   
+
+  
+
+    
