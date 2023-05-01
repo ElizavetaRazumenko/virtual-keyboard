@@ -90,8 +90,9 @@ document.body.onload = () => {
         } else {
             initRu(); 
         }
-
-        TEXT_AREA.value = JSON.parse(localStorage.getItem("textarea") || "");
+        if (localStorage.getItem("textarea")) {
+            TEXT_AREA.value = JSON.parse(localStorage.getItem("textarea") || "");
+        }
 };
 
 
