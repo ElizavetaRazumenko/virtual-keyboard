@@ -1,0 +1,97 @@
+html {
+    box-sizing: border-box;
+    margin:0; 
+    padding:0;
+}
+
+body {
+    margin: 0;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-image: url(assets/ocean.jpg);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+
+.body-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 40px;
+    width: 50%;
+    color: rgb(59, 56, 56);
+    font-size: 3rem;
+    font-weight: 700;
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.body__textarea {
+    margin-top: 30px;
+    min-width: 100%;
+    min-height: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: rgba(200, 206, 206, 0.8);
+    line-height: 1.5;
+    font-size: 1.5rem;
+}
+
+.body__keyboard {
+    margin-top: 20px;
+    padding: 10px;
+    min-width: 100%;
+    background-color: rgba(200, 206, 206, 0.6);
+    border-radius: 10px;
+    border: 1px solid rgb(167, 164, 164);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.body__p {
+    font-size: 1rem;
+}
+
+.body__key {
+    cursor: pointer;
+    font-size: 1.5rem;
+    padding: 10px;
+    user-select: none;
+    margin: 5px;
+    min-height: 25px;
+    min-width: 25px;
+    background-color: rgb(242, 234, 234);
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 2px #999;
+    transition: .3s;
+}
+
+.body__key_enter {
+    min-width: 75px;
+}
+
+.body__key_shift {
+    min-width: 105px;
+}
+
+.body__key_space {
+    min-width: 340px;
+}
+
+.body__key:hover {
+    background-color: rgb(211, 204, 204);
+}
+
+.active {
+    background-color: rgb(204, 200, 205);
+
+    border-radius: 30px;
+}
+
