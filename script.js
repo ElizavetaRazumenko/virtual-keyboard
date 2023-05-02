@@ -13,7 +13,7 @@ BODY_WRAPPER.append(KEYBOARD);
 
 const DESCRIPTION = document.createElement("p");
 DESCRIPTION.className = "body__p";
-DESCRIPTION.textContent = "The keyboard was created in the Windows operating system. Press the keys Ctrl + Alt to switch the language.";
+DESCRIPTION.textContent = "The keyboard was created in the Windows operating system. Press the keys Shift + Alt to switch the language.";
 BODY_WRAPPER.append(DESCRIPTION);
 
 
